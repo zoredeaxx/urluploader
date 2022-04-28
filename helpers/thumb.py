@@ -19,7 +19,7 @@ logging.getLogger("pyrogram").setLevel(logging.WARNING)
 DL ="./thumb"
 
 
-@Client.on_message(pyrogram.filters.photo)
+@Client.on_message(filters.private & filters.photo))
 async def save_photo(bot, update):
     if update.media_group_id is not None:
         # album is sent
@@ -45,7 +45,7 @@ async def save_photo(bot, update):
         )
 
 
-@Client.on_message(pyrogram.filters.command(["delthumb"]))
+@Client.on_message(filters.command("delthumb") & filters.incoming & ~filters.edited)
 async def delete_thumbnail(bot, update):
     download_location = DL + "/" + str(update.from_user.id)
     try:
