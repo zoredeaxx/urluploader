@@ -1,4 +1,5 @@
 import time, os, logging
+from main import Config
 #from hachoir.parser import createParser
 #from hachoir.metadata import extractMetadata
 from helpers.download_from_url import get_size
@@ -122,7 +123,7 @@ async def upvideo(client, message, msg, file_loc, fname=None):
     
 
     c_time = time.time()
-    krishn = DL + "/" + str(update.from_user.id) + ".jpg"
+    krishn = Config.DOWNLOAD_DIRECTORY + "/" + str(message.from_user.id) + ".jpg"
     try:
         await client.send_video(
             chat_id=message.chat.id,
