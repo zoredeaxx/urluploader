@@ -10,6 +10,9 @@ from helpers.ffprobe import stream_creator
 
 logger = logging.getLogger(__name__)
 
+DL = "./thumb"
+
+
 # audio uploader
 async def upaudio(client, message, msg, file_loc, fname=None):
     
@@ -118,14 +121,15 @@ async def upvideo(client, message, msg, file_loc, fname=None):
 
     
 
-    c_time = time.time()    
+    c_time = time.time()
+    krishn = DL + "/" + str(update.from_user.id) + ".jpg"
     try:
         await client.send_video(
             chat_id=message.chat.id,
             video=file_loc,
             file_name=fn,
-            thumb=str(thumbnail),
-            caption=f"`{fn}` [{size}]",
+            thumb=krishn,
+            caption=f"**{fn}**",
             width=width,
             height=height,
             duration=duration,
