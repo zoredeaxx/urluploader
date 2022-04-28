@@ -16,7 +16,7 @@ import pyrogram
 from pyrogram import Client, filters
 logging.getLogger("pyrogram").setLevel(logging.WARNING)
 
-DL ="./thumb/"
+DL ="./thumb"
 
 
 @Client.on_message(pyrogram.filters.photo)
