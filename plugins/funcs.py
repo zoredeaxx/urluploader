@@ -129,3 +129,32 @@ async def leecher1(client , u):
     else:
         await u.reply_text(text=f"sorry ! you cant use this bot.\n\ndeploy your own bot:\n[Repository_Link](https://github.com/prxpostern/URLtoTG001)", quote=True, disable_web_page_preview=True)
         return
+
+@Client.on_message(filters.private & filters.photo))
+async def save_photo(bot, update):
+# received single photo
+    download_location = Config.DOWNLOAD_DIRECTORY + str(update.from_user.id) + ".jpg"
+    await bot.download_media(
+        message=update,
+        file_name=download_location
+    )
+    await bot.send_message(
+        chat_id=update.chat.id,
+        text="**Saved Thumbnail Successfully**",
+        reply_to_message_id=update.message_id
+    )
+
+
+@Client.on_message(filters.command("delthumb") & filters.incoming & ~filters.edited)
+async def delete_thumbnail(bot, update):
+    download_location = Config.DOWNLOAD_DIRECTORY + str(update.from_user.id)
+    try:
+        os.remove(download_location + ".jpg")
+        # os.remove(download_location + ".json")
+    except:
+        pass
+    await bot.send_message(
+        chat_id=update.chat.id,
+        text="**Deleted Thumbnail Successfully**",
+        reply_to_message_id=update.message_id
+    )
