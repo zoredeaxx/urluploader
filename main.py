@@ -22,7 +22,7 @@ class Config:
     AUTH_USERS = set(int(x) for x in os.environ.get("AUTH_USERS").split())
     TIMEOUT = 0
     MAX_SIZE = 9 * 1024 * 1024 * 1024
-    CUSTOM_THUMB = None
+    CUSTOM_THUMB = "https://telegra.ph/file/e82088d6ad482e83ba816.jpg"
     EDIT_TIME = 3
     DOWNLOAD_DIRECTORY = "Downloads/"
     SP_LIT_ALGO_RITH_M= "hjs"
