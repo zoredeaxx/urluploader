@@ -138,11 +138,7 @@ async def save_photo(bot, update):
         message=update,
         file_name=download_location
     )
-    await bot.send_message(
-        chat_id=update.chat.id,
-        text="**Saved Thumbnail Successfully**",
-        reply_to_message_id=update.message_id
-    )
+    await update.reply_text("**Saved Thumbnail Successfully**")
 
 
 @Client.on_message(filters.command(["delthumb"]))
@@ -153,8 +149,4 @@ async def delete_thumbnail(bot, update):
         # os.remove(download_location + ".json")
     except:
         pass
-    await bot.send_message(
-        chat_id=update.chat.id,
-        text="**Deleted Thumbnail Successfully**",
-        reply_to_message_id=update.message_id
-    )
+    await update.reply_text("**Removed Thumbnail Successfully**")
